@@ -1,1 +1,1 @@
-# CPSC-2600-Final-Project
+# CPSC 2600 Final Project
