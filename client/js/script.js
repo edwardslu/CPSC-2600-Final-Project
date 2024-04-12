@@ -25,25 +25,25 @@
         return data
     }
     const postData = async (url = '', data = {}) => {
-        console.log("url", url)
+        // console.log("url", url)
         // Default options are marked with *
-        // const response = await fetch(url, {
-        //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        //     mode: 'cors', // no-cors, *cors, same-origin
-        //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        //     credentials: 'same-origin', // include, *same-origin, omit
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //         // 'Content-Type': 'application/x-www-form-urlencoded',
-        //     },
-        //     redirect: 'follow', // manual, *follow, error
-        //     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        //     body: JSON.stringify(data) // body data type must match "Content-Type" header
-        // })
-        // return response.json(); // parses JSON response into native JavaScript objects
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+        })
+        return response.json(); // parses JSON response into native JavaScript objects
 
-        const response = await fetch(url);
-        console.log(response);
+        // const response = await fetch(url);
+        // console.log(response);
         // return response.json(); // parses JSON response into native JavaScript objects
     }
 
@@ -68,18 +68,29 @@
         console.log(email, password, confirm);
 
         if (password == confirm) {
-            const reply = await postData('/signup', { email, password })
-            if (reply.error) {
-                registerWarning.innerHTML = `${reply.error}`
-                show(registerWarning);
-            }
-            else if (reply.success) {
+            const reply = await postData('/signup', { email, password });
+            console.log(reply);
+
+            if (reply.success) {
                 console.log(reply, reply)
                 window.history.pushState(navigation.posts, "", `/${navigation.posts.url}`)
                 displaySection(navigation.posts)
                 authorize(true)
-                document.querySelector('[data-authenticated] > span').innerHTML = `Welcome ${email}!`;
+                var welcome = document.querySelector('#welcomeMessage');
+                // welcome.classList.add("h6");
+                welcome.innerHTML = `Welcome ${email}!`;
             }
+            // if (reply.error) {
+            //     registerWarning.innerHTML = `${reply.error}`
+            //     show(registerWarning);
+            // }
+            // else if (reply.success) {
+            //     console.log(reply, reply)
+            //     window.history.pushState(navigation.posts, "", `/${navigation.posts.url}`)
+            //     displaySection(navigation.posts)
+            //     authorize(true)
+            //     document.querySelector('[data-authenticated] > span').innerHTML = `Welcome ${email}!`;
+            // }
         }
         else {
             registerWarning.innerHTML = 'Passwords do not match. Re-enter your password'
@@ -122,12 +133,9 @@
 
     const test = async (event) => {
         event.preventDefault();
-        const reply = await postData('/test', {"test": "json"});
-        if (reply.error) {
-            console.log("Test failure.");
-        }
-        else if (reply.success) {
-            console.log(reply.success);
+        const reply = await fetch('/test', {"test": "json"});
+        if (reply.status == 200) {
+            console.log("Test success!");
         }
     }
 
@@ -211,6 +219,9 @@
 
         signupButton = document.querySelector("#submit");
         signupButton.addEventListener("click", signup);
+
+        signoutButton = document.querySelector("#signout");
+        signoutButton.addEventListener("click", signout);
 
         testButton = document.querySelector("#test");
         testButton.onclick = test;

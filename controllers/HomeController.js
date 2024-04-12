@@ -20,6 +20,10 @@ homeController.get('/client/css/litera.min.css', (request, response) => {
     response.sendFile(path.join(clientPath, "css/litera.min.css"));
 });
 
+homeController.get('/client/img/question.svg', (request, response) => {
+    response.sendFile(path.join(clientPath, "img/question.svg"));
+});
+
 homeController.get('/client/img/person.svg', (request, response) => {
     response.sendFile(path.join(clientPath, "img/person.svg"));
 });
