@@ -8,15 +8,15 @@ class Utils {
         "Cache-Control": "no-cache",
         "X-Accel-Buffering": "no",
     }
-    static logRequest(request) {
+    static logRequest(request)  {
         const log = {}
         log.date = new Date()
         log.url = request.url
         log.method = request.method
         fs.appendFile(config.LOG_FILE, `${JSON.stringify(log)}\n`, (error) => {
-            if (error) console.log(`\t|Error appending to a file\n\t|${error}`)
+            if (error) console.log(`\t|Error appending to a file\n\t|${error}`);
         })
-    }
+      }
     static saveJson(filename, data) {
         try {
             fs.writeFile(filename, data, (error) => {
@@ -32,7 +32,7 @@ class Utils {
     }
     static readJson(filename) {
         try {
-            let data = fs.readFileSync(filename)
+            let data = fs.readFileSync(filename);
             console.log("Data read successfully!")
             return JSON.parse(data)
         } catch (error) {

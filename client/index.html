@@ -45,7 +45,7 @@
                 <a data-page="register" class="btn btn-outline-info">register</a>
                 <a data-page="login" class="btn btn-outline-info">login</a>
               </div>
-              <div data-authenticated><img src="img/person.svg" alt="person" width="30">&nbsp;<span></span>
+              <div data-authenticated><img src="img/person.svg" alt="person" width="30" id="pfp">&nbsp;<span></span>
                 <button type="button" class="btn btn-info text-end" id="signout">Logout</button>
               </div>
             </form>
@@ -113,12 +113,12 @@
     </dialog>
 
     <section id="home" class="text-white">
-      <main>
+      <main class="text-center">
         <h2 class="text-center py-3">Home</h2>
         <br>
         <p class="mx-3">Hi! I'm Edward Lu. Currently looking for opportunities in software/web development.</p>
-        <span class="ms-3">Here you can find out </span><a role="button">about me</a>
-        <br>
+        <span class="ms-3">Here you can find out <a role="button" class="link" data-page="about">about me</a>.</span>
+        <br><br>
         <button id="test" class="btn btn-outline-info text-center">Test</button>
       </main>
     </section>
@@ -134,16 +134,30 @@
             <input type="password" class="form-control" id="registrationPassword" title="registrationPassword" placeholder="********" required><br>
             <label for="confirmRegistrationPW" class="text-white">Confirm Password:</label>
             <input type="password" class="form-control" id="confirmRegistrationPW" title="confirmRegistrationPW" placeholder="********" required><br>
-            <input id="submit" type="submit" value="Submit">
+            <input id="registrationSubmit" type="submit" value="Submit">
           </form>
         </div>
       </div>
     </section>
 
-    <section id="signin"></section>
+    <section id="login">
+      <div class="card">
+        <div class="card-header bg-info text-center text-white h3">Login</div>
+        <div class="card-body bg-dark">
+          <form method="get">
+            <label for="loginEmail" class="text-white">Email:</label>
+            <input type="email" class="form-control" id="loginEmail" title="loginEmail" placeholder="name@example.com" required><br>
+            <label for="loginPassword" class="text-white">Password:</label>
+            <input type="password" class="form-control" id="loginPassword" title="loginPassword" placeholder="********" required><br>
+            <input id="loginSubmit" type="submit" value="Submit">
+            <span id="loginWarning"></span>
+          </form>
+        </div>
+      </div>
+    </section>
 
     <section id="about" class="text-white">
-      <p>Bye</p>
+      <p class="text-center">I lied.</p>
     </section>
 
     <section id="posts" class="text-white">

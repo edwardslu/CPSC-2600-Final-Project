@@ -1,0 +1,11 @@
+{"date":"2024-04-13T03:02:40.269Z","url":"/client/index.html","method":"GET"}
+{"date":"2024-04-13T03:02:40.289Z","url":"/client/css/litera.min.css","method":"GET"}
+{"date":"2024-04-13T03:02:40.292Z","url":"/client/css/style.css","method":"GET"}
+{"date":"2024-04-13T03:02:40.293Z","url":"/client/img/person.svg","method":"GET"}
+{"date":"2024-04-13T03:02:40.293Z","url":"/client/js/bootstrap.bundle.min.js","method":"GET"}
+{"date":"2024-04-13T03:02:40.295Z","url":"/client/js/script.js","method":"GET"}
+{"date":"2024-04-13T03:02:40.341Z","url":"/client/img/question.svg","method":"GET"}
+{"date":"2024-04-13T03:03:07.943Z","url":"/client/css/litera.min.css","method":"GET"}
+{"date":"2024-04-13T03:03:07.943Z","url":"/client/css/style.css","method":"GET"}
+{"date":"2024-04-13T03:03:30.782Z","url":"/signin","method":"POST"}
+{"date":"2024-04-13T03:03:41.662Z","url":"/signout","method":"POST"}

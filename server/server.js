@@ -12,6 +12,7 @@ const path = require('node:path');
 
 
 app.get('/test', (request, response) => {
+    utils.logRequest(request);
     response.sendStatus(200);
 })
 

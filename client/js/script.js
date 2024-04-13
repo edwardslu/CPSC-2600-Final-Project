@@ -61,17 +61,23 @@
      */
     //----------------------------------------------------
     const signup = async (event) => {
-        event.preventDefault()
+        event.preventDefault();
+        email = undefined;
         email = document.querySelector('#registrationEmail').value;
         let password = document.querySelector('#registrationPassword').value;
         let confirm = document.querySelector('#confirmRegistrationPW').value;
         console.log(email, password, confirm);
 
         if (password == confirm) {
+            var registerWarning = document.querySelector('#registrationWarning');
             const reply = await postData('/signup', { email, password });
             console.log(reply);
 
-            if (reply.success) {
+            if (reply.error) {
+                registerWarning.innerHTML = `${reply.error}`
+                show(registerWarning);
+            }
+            else if (reply.success) {
                 console.log(reply, reply)
                 window.history.pushState(navigation.posts, "", `/${navigation.posts.url}`)
                 displaySection(navigation.posts)
@@ -79,18 +85,8 @@
                 var welcome = document.querySelector('#welcomeMessage');
                 // welcome.classList.add("h6");
                 welcome.innerHTML = `Welcome ${email}!`;
+                document.querySelector("#pfp").setAttribute("title", email);
             }
-            // if (reply.error) {
-            //     registerWarning.innerHTML = `${reply.error}`
-            //     show(registerWarning);
-            // }
-            // else if (reply.success) {
-            //     console.log(reply, reply)
-            //     window.history.pushState(navigation.posts, "", `/${navigation.posts.url}`)
-            //     displaySection(navigation.posts)
-            //     authorize(true)
-            //     document.querySelector('[data-authenticated] > span').innerHTML = `Welcome ${email}!`;
-            // }
         }
         else {
             registerWarning.innerHTML = 'Passwords do not match. Re-enter your password'
@@ -107,27 +103,31 @@
             console.log(reply, reply)
             window.history.pushState(navigation.home, "", `/${navigation.home.url}`)
             displaySection(navigation.home)
-            authorize(false)
+            authorize(false);
         } else {
-            console.log(reply)
+            console.log(reply);
         }
     }
     const signin = async (event) => {
-        event.preventDefault()
-        email = document.querySelector('#Login input[name="email"]').value
-        console.log(email)
-        let password = document.querySelector('#Login input[name="password"]').value
-        const reply = await postData('/signin', { email, password })
+        event.preventDefault();
+        email = undefined;
+        email = document.querySelector('#loginEmail').value;
+        console.log(email);
+        let password = document.querySelector('#loginPassword').value;
+        const reply = await postData('/signin', { email, password });
+        var loginWarning = document.querySelector('#loginWarning');
         if (reply.error) {
             loginWarning.innerHTML = `${reply.error}`
             show(loginWarning)
         }
         else if (reply.success) {
-            console.log(reply, reply)
-            window.history.pushState(navigation.posts, "", `/${navigation.posts.url}`)
-            displaySection(navigation.posts)
-            authorize(true)
-            document.querySelector('[data-authenticated] > span').innerHTML = `Welcome ${email}!`
+            console.log(reply, reply);
+            window.history.pushState(navigation.posts, "", `/${navigation.posts.url}`);
+            displaySection(navigation.posts);
+            authorize(true);
+            var welcome = document.querySelector('#welcomeMessage');
+            welcome.innerHTML = `Welcome ${email}!`;
+            document.querySelector("#pfp").setAttribute("title", email);
         }
     }
 
@@ -195,6 +195,14 @@
             displaySection(event.state)
         }
     }
+
+    // const showPfp = (event) => {
+    //     const profilePicture = document.querySelector("#pfp");
+    //     profilePicture.title = 
+    // }
+
+
+
     document.addEventListener("DOMContentLoaded", () => {
         displaySection(navigation.home)
         window.history.replaceState(navigation.home, "", document.location.href);
@@ -217,11 +225,17 @@
         const errors = document.querySelectorAll('section div[name="error"]')
         errors.forEach(error => hide(error))
 
-        signupButton = document.querySelector("#submit");
+        signupButton = document.querySelector("#registrationSubmit");
         signupButton.addEventListener("click", signup);
+
+        loginButton = document.querySelector("#loginSubmit");
+        loginButton.addEventListener("click", signin);
 
         signoutButton = document.querySelector("#signout");
         signoutButton.addEventListener("click", signout);
+
+        // profilePicture = document.querySelector("#pfp");
+        // profilePicture.addEventListener("mouseover", showPfp);
 
         testButton = document.querySelector("#test");
         testButton.onclick = test;
