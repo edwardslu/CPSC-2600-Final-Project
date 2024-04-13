@@ -77,21 +77,13 @@
                 console.log('\t|inside connect()')
                 console.log('\t|Connected successfully to MongoDB!',
                     conn.s.url.replace(/:([^:@]{1,})@/, ':****@'))
-                /**
-          * Create a collection in a MongoDB database
-          * Like a database, a collection will be created if it does not exist
-          * The collection will only be created once we insert a document
-          */
+
                 let collection = client.db().collection("Log")
                 let log = Log(req.method, req.url, req.query, res.statusCode)
                 util.insertOne(collection, log)
 
             })
             .catch(err => console.log(`\t|Could not connect to MongoDB Server\n\t|${err}`))
-            // .finally(() => {
-            //     client.close()
-            //     console.log('Disconnected')
-            // })
     }
     const util = {
         getUri: getUri,
