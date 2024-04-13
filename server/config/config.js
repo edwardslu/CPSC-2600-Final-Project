@@ -2,7 +2,7 @@
     const fs = require("fs");
     const config = {};
     config.PORT = process.env.PORT || 5501
-    config.ROOT = `${__dirname}/../../client`
+    config.ROOT = `${__dirname}/../../views`
     config.SALT_ROUNDS = 10;
     config.mime = {
         html: 'text/html',

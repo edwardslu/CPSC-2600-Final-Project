@@ -139,6 +139,43 @@
         }
     }
 
+    const randomImage = (event) => {
+        let firstImage = document.getElementById("image1");
+        let secondImage = document.getElementById("image2");
+        let thirdImage = document.getElementById("image3");
+
+        if (!firstImage.hasChildNodes()) {
+            let randomNum1 = Math.floor(Math.random() * 100);
+            let randomNum2 = Math.floor(Math.random() * 100);
+            let randomNum3 = Math.floor(Math.random() * 100);
+    
+            let random1 = document.createElement('img');
+            let random2 = document.createElement('img');
+            let random3 = document.createElement('img');
+    
+            fetch("https://picsum.photos/v2/list?&limit=100")
+                .then(response => response.json())
+                .then(data => {
+                    Object.keys(data).forEach(num => {
+                        if (data[num].id == randomNum1) {
+                            random1.setAttribute('src', data[num].download_url);
+                        } else if (data[num].id == randomNum2) {
+                            random2.setAttribute('src', data[num].download_url);
+                        } else if (data[num].id == randomNum3) {
+                            random3.setAttribute('src', data[num].download_url);
+                        }
+                    });
+    
+                    firstImage.appendChild(random1);
+                    random1.classList.add("d-block", "w-50", "mx-auto");
+                    secondImage.appendChild(random2);
+                    random2.classList.add("d-block", "w-50", "mx-auto");
+                    thirdImage.appendChild(random3);
+                    random3.classList.add("d-block", "w-50", "mx-auto");
+            });
+        }
+    }
+
     const setActivePage = (section) => {
         console.log(section)
         let menuItems = document.querySelectorAll('a[data-page]')
@@ -239,6 +276,9 @@
 
         testButton = document.querySelector("#test");
         testButton.onclick = test;
+
+        imageButton = document.querySelector("#image");
+        imageButton.onclick = randomImage;
 
             // document.querySelector("#signup").onclick = signup;
             // document.querySelector("#signout").onclick = signout;

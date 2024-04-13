@@ -119,7 +119,25 @@
         <p class="mx-3">Hi! I'm Edward Lu. Currently looking for opportunities in software/web development.</p>
         <span class="ms-3">Here you can find out <a role="button" class="link" data-page="about">about me</a>.</span>
         <br><br>
-        <button id="test" class="btn btn-outline-info text-center">Test</button>
+        <button type="button" id="test" class="btn btn-outline-info text-center">Test</button>
+        <br><br>
+        <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div id="image1" class="carousel-item active"></div>
+            <div id="image2" class="carousel-item"></div>
+            <div id="image3" class="carousel-item"></div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <br>
+          <button title="button" type="button" class="btn btn-outline-info" id="image">Get Images</button>
+        </div>
       </main>
     </section>
 
@@ -135,6 +153,7 @@
             <label for="confirmRegistrationPW" class="text-white">Confirm Password:</label>
             <input type="password" class="form-control" id="confirmRegistrationPW" title="confirmRegistrationPW" placeholder="********" required><br>
             <input id="registrationSubmit" type="submit" value="Submit">
+            <span class="text-white" id="registrationWarning"></span>
           </form>
         </div>
       </div>
@@ -150,14 +169,51 @@
             <label for="loginPassword" class="text-white">Password:</label>
             <input type="password" class="form-control" id="loginPassword" title="loginPassword" placeholder="********" required><br>
             <input id="loginSubmit" type="submit" value="Submit">
-            <span id="loginWarning"></span>
+            <span class="text-white" id="loginWarning"></span>
           </form>
         </div>
       </div>
     </section>
 
-    <section id="about" class="text-white">
-      <p class="text-center">I lied.</p>
+    <section id="about" class="text-white justify-content-center align-items-center">
+      <h2 class="text-center py-3">About Me</h2>
+      <br>
+      <h4 class="text-center">Basic Information</h4>
+      <table class="table text-center d-flex justify-content-center">
+        <tr class="border">
+          <th class="border" colspan="1">Name</th>
+          <td class="border" colspan="1">Edward Lu</td>
+        </tr>
+        <tr class="border">
+          <th class="border" colspan="1">Birthdate</th>
+          <td class="border" colspan="1">October 3, 2002</td>
+        </tr>
+        <tr class="border">
+          <th class="border" colspan="1">Birthplace</th>
+          <td class="border" colspan="1">Taiwan</td>
+        </tr>
+        <tr class="border">
+          <th class="border"colspan="1">Languages</th>
+          <td class="border" colspan="1">English, Mandarin, Japanese</td>
+        </tr>
+      </table>
+      <br>
+      <h4 class="text-center">Programming Languages and Tools</h4>
+      <div class="text-center">
+        <ul class="text-start d-inline-block mx-5">
+          <li>Python</li>
+          <li>Java</li>
+          <li>C++</li>
+          <li>Basic</li>
+        </ul>
+        <ul class="text-start d-inline-block mx-5">
+          <li>MongoDB</li>
+          <li>Bash</li>
+          <li>JavaScript</li>
+          <li>HTML5 and CSS</li>
+        </ul>
+      </div>
+
     </section>
 
     <section id="posts" class="text-white">
