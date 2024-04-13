@@ -1,8 +1,11 @@
 (() => {
     const MongoClient = require('mongodb').MongoClient;
+    const express = require('express');
     const connection = require('./config/config');
-    const Log = require('./log.js')
-    let mongoClient = undefined
+    const Log = require('./log.js');
+    let mongoClient = undefined;
+
+
     //-------------------------------------------------------------------------
     /**
      * Connection Strings
@@ -67,8 +70,8 @@
             })
     }
     //-------------------------------------------------------------------------
-    const logRequest = async (req, res, next) => {
-        const client = getMongoClient()
+    const logRequest = async (req, res) => {
+        const client = getMongoClient();
         client.connect()
             .then(conn => {
                 console.log('\t|inside connect()')
@@ -79,17 +82,16 @@
           * Like a database, a collection will be created if it does not exist
           * The collection will only be created once we insert a document
           */
-                let collection = client.db().collection("Requests")
+                let collection = client.db().collection("Log")
                 let log = Log(req.method, req.url, req.query, res.statusCode)
                 util.insertOne(collection, log)
 
             })
             .catch(err => console.log(`\t|Could not connect to MongoDB Server\n\t|${err}`))
-            .finally(() => {
-                //client.close()
-                //console.log('Disconnected')
-            })
-        next()
+            // .finally(() => {
+            //     client.close()
+            //     console.log('Disconnected')
+            // })
     }
     const util = {
         getUri: getUri,

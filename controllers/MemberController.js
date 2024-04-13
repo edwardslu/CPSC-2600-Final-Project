@@ -58,6 +58,7 @@ memberController.post('/signup', async (request, response) => {
         .json({ error: `${email} already exists. Please enter a different email.`})
     }
     utils.logRequest(request);
+    util.logRequest(request, response);
 });
 
 memberController.post('/signin', async (request, response) => {
@@ -92,6 +93,7 @@ memberController.post('/signin', async (request, response) => {
         }
     }
     utils.logRequest(request);
+    util.logRequest(request, response);
 })
 
 
@@ -108,6 +110,7 @@ memberController.post('/signout', (request, response) => {
         },
     });
     utils.logRequest(request);
+    util.logRequest(request, response);
 });
 
 module.exports = memberController;
